@@ -1,7 +1,7 @@
 import marimo
 
 __generated_with = "0.23.5"
-app = marimo.App(width="medium")
+app = marimo.App(width="medium", app_title="Grade Extractor")
 
 with app.setup:
     import marimo as mo
@@ -14,11 +14,11 @@ with app.setup:
 def _():
     semester = "Spring semester 2026"
     batchwise_links = {
-        "MS21": "https://erp.iisermohali.ac.in/spGetRegisteredCoursesInLevel.action?level.id=1265860609",
-        "MS22": "https://erp.iisermohali.ac.in/spGetRegisteredCoursesInLevel.action?level.id=1265860608",
-        "MS23": "https://erp.iisermohali.ac.in/spGetRegisteredCoursesInLevel.action?level.id=1264648192",
-        "MS24": "https://erp.iisermohali.ac.in/spGetRegisteredCoursesInLevel.action?level.id=1264648193",
-        "MS25": "https://erp.iisermohali.ac.in/spGetRegisteredCoursesInLevel.action?level.id=1265860621",
+        "MS21": "https://erp.iisermohali.ac.in/spGetRegisteredCoursesInLevel.action?level.id=1315930116",
+        "MS22": "https://erp.iisermohali.ac.in/spGetRegisteredCoursesInLevel.action?level.id=1315930117",
+        "MS23": "https://erp.iisermohali.ac.in/spGetRegisteredCoursesInLevel.action?level.id=1315930118",
+        # "MS24": "https://erp.iisermohali.ac.in/spGetRegisteredCoursesInLevel.action?level.id=",
+        # "MS25": "https://erp.iisermohali.ac.in/spGetRegisteredCoursesInLevel.action?level.id=",
     }
     return batchwise_links, semester
 
@@ -69,13 +69,9 @@ def _():
 
 @app.cell
 def _(form):
-    if form.value:
-        output = parse(form.value)
-    return (output,)
+    mo.stop(form.value is None, mo.md("Submit the form to see the results!"))
 
-
-@app.cell
-def _(output):
+    output = parse(form.value)
     if output['spi'] is not None:
         spi_display = mo.md(f"/// admonition | Based on the grades, your SPI is: **{output['spi']}**")
     else:
