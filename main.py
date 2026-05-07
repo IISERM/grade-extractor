@@ -14,9 +14,9 @@ with app.setup:
 def _():
     semester = "Spring semester 2026"
     batchwise_links = {
-        "MS21": "https://erp.iisermohali.ac.in/spGetRegisteredCoursesInLevel.action?level.id=1315930116",
+        "MS21": "https://erp.iisermohali.ac.in/spGetRegisteredCoursesInLevel.action?level.id=1315930118",
         "MS22": "https://erp.iisermohali.ac.in/spGetRegisteredCoursesInLevel.action?level.id=1315930117",
-        "MS23": "https://erp.iisermohali.ac.in/spGetRegisteredCoursesInLevel.action?level.id=1315930118",
+        "MS23": "https://erp.iisermohali.ac.in/spGetRegisteredCoursesInLevel.action?level.id=1315930116",
         # "MS24": "https://erp.iisermohali.ac.in/spGetRegisteredCoursesInLevel.action?level.id=",
         # "MS25": "https://erp.iisermohali.ac.in/spGetRegisteredCoursesInLevel.action?level.id=",
     }
