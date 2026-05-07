@@ -41,19 +41,16 @@ def _():
 
 @app.cell(hide_code=True)
 def _(batchwise_links):
-    batch_dropdown = mo.ui.dropdown(options=batchwise_links).form()
-    mo.vstack([
-        mo.md("2. Choose your batch"),
-        batch_dropdown,
-    ])
+    batch_dropdown = mo.ui.dropdown(options=batchwise_links, label="2. Choose your batch")
+    batch_dropdown
     return (batch_dropdown,)
 
 
 @app.cell(hide_code=True)
 def _(batch_dropdown):
-    mo.md(f"""
-    3. Visit this link: {batch_dropdown.value}
-    """)
+    mo.stop(batch_dropdown.value is None, mo.md("3. 👆 Choose a batch to get the link!"))
+
+    mo.md(f"3. Visit this link: {batch_dropdown.value}")
     return
 
 
@@ -75,12 +72,18 @@ def _(form):
     if output['spi'] is not None:
         spi_display = mo.md(f"/// admonition | Based on the grades, your SPI is: **{output['spi']}**")
     else:
-        spi_display = mo.md("/// admonition | SPI cannot be calculated as some courses do not have grades yet.")
+        spi_display = mo.md("""
+        /// admonition | SPI cannot be calculated as some courses do not have grades yet.
+        ///
+
+        /// warning | Grade `None` for any course implies that the grade for that course is not yet available. Repeat the process later.
+        ///
+        """)
 
     mo.vstack([
         mo.md("5. Profit!"),
         pd.DataFrame(output['data']),
-        spi_display
+        spi_display,
     ])
     return
 
