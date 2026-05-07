@@ -1,18 +1,38 @@
+# This workflow builds and deploys marimo notebooks to GitHub Pages
+# It runs automatically when changes are pushed to the main branch or can be triggered manually
+
+name: Deploy to GitHub Pages
+
+# Defines when the workflow will run
+on:
+    push:
+        branches: ["main"] # Trigger on pushes to main branch
+    workflow_dispatch: # Allow manual triggering from the GitHub UI
+
+# Environment variables used by the workflow
+env:
+    UV_SYSTEM_PYTHON: 1 # Use system Python with uv package manager
+
 jobs:
     build:
         runs-on: ubuntu-latest
 
         steps:
-            # ... checkout and install dependencies
+            # Check out the repository code
+            - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+
+            # Install uv package manager for faster Python package installation
+            - name: 🚀 Install uv
+              uses: astral-sh/setup-uv@37802adc94f370d6bfd71619e3f0bf239e1f3b78 # v7
 
             - name: 📄 Export notebook
               run: |
-                  marimo export html-wasm main.py -o deployed --mode run
+                  uv run marimo export html-wasm main.py -o _site --mode run
 
             - name: 📦 Upload Pages Artifact
-              uses: actions/upload-pages-artifact@v3
+              uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4
               with:
-                  path: deployed
+                  path: _site
 
     deploy:
         needs: build
@@ -28,6 +48,4 @@ jobs:
         steps:
             - name: 🌐 Deploy to GitHub Pages
               id: deployment
-              uses: actions/deploy-pages@v4
-              with:
-                  artifact_name: github-pages
+              uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4  # GitHub's official Pages deployment action
