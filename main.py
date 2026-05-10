@@ -17,8 +17,8 @@ def _():
         "MS21": "https://erp.iisermohali.ac.in/spGetRegisteredCoursesInLevel.action?level.id=1315930118",
         "MS22": "https://erp.iisermohali.ac.in/spGetRegisteredCoursesInLevel.action?level.id=1315930117",
         "MS23": "https://erp.iisermohali.ac.in/spGetRegisteredCoursesInLevel.action?level.id=1315930116",
-        # "MS24": "https://erp.iisermohali.ac.in/spGetRegisteredCoursesInLevel.action?level.id=",
-        # "MS25": "https://erp.iisermohali.ac.in/spGetRegisteredCoursesInLevel.action?level.id=",
+        "MS24": "https://erp.iisermohali.ac.in/spGetRegisteredCoursesInLevel.action?level.id=1315930113",
+        "MS25": "https://erp.iisermohali.ac.in/spGetRegisteredCoursesInLevel.action?level.id=1315930115",
     }
     return batchwise_links, semester
 
