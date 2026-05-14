@@ -23,6 +23,14 @@ def _():
     return batchwise_links, semester
 
 
+@app.cell
+def _():
+    mo.md("""
+    /// admonition | This is a simple Python app to get your grades from the ERP before they are officially released. All data is processed locally in your browser, and no data is sent to any server. The app is open-source, and you are welcome to check the code [**here**]("https://github.com/IISERM/grade-extractor/blob/main/main.py") :)
+    """)
+    return
+
+
 @app.cell(hide_code=True)
 def _(semester):
     mo.md(f"""
@@ -58,7 +66,7 @@ def _(batch_dropdown):
 def _():
     form = mo.ui.text_area(placeholder="Paste JSON here...").form()
     mo.vstack([
-        mo.md("4. Paste the JSON response you get from the above link into the text area below:"),
+        mo.md("4. Copy and paste the JSON response (i.e. the entire page content) that you get from the above link into the text area below:"),
         form
     ])
     return (form,)
