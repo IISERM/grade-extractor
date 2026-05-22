@@ -27,10 +27,18 @@ def _():
 @app.cell
 def _():
     mo.md("""
-    /// admonition | This is a simple Python app to get your grades from the ERP before they are officially released. All data is processed locally in your browser, and no data is sent to any server. The app is open-source, and you are welcome to check the code [**here**]("https://github.com/IISERM/grade-extractor/blob/main/main.py") :)
+    /// note | Info
+    This is a simple Python app to get your grades from the ERP before they are officially released. All data is processed locally in your browser, and no data is sent to any server. The app is open-source, and you are welcome to check the code [**here**]("https://github.com/IISERM/grade-extractor/blob/main/main.py") :)
     """)
     return
 
+@app.cell
+def _():
+    mo.md("""
+    /// warning | Note
+    The grades obtained from this method may not be 100% accurate as they are based on the data available in the ERP, which may not be final. The official grades will be released by the institute, and those should be considered as the final grades. Please do not harass the faculty regarding the grades obtained from this method, as they are not official and may contain errors. This is just a fun project to extract data from the ERP and should be used for informational purposes only.
+    """)
+    return
 
 @app.cell(hide_code=True)
 def _(semester):
